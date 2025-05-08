@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Settings, Users, MessageCircle } from "lucide-react";
+import { Settings, Users, MessageCircle, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface AppSidebarProps {
   isOpen: boolean;
@@ -16,11 +17,24 @@ const AppSidebar = ({
   activeSection,
   onSectionChange,
 }: AppSidebarProps) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem("currentUser");
+    // Navigate to landing page
+    navigate("/");
+  };
+
+  const handleToggle = () => {
+    onClose(); // This will toggle the state in the parent component
+  };
+
   return (
     <aside
       className={cn(
         "fixed left-0 top-0 z-40 h-screen transition-all duration-300 ease-in-out bg-theme-purple/10 border-r border-theme-purple/20",
-        isOpen ? "w-64" : "w-0"
+        isOpen ? "w-64" : "w-16"
       )}
     >
       <div className="h-full flex flex-col overflow-hidden">
@@ -31,12 +45,12 @@ const AppSidebar = ({
               !isOpen && "hidden"
             )}
           >
-            Chatty Friends Corner
+            MindMates
           </h2>
           <Button
             variant="ghost"
             size="icon"
-            onClick={onClose}
+            onClick={handleToggle}
             className="hover:bg-theme-purple/10"
           >
             <span className="sr-only">
@@ -117,11 +131,24 @@ const AppSidebar = ({
         </nav>
 
         <div className="p-4 border-t border-theme-purple/20">
-          <p
-            className={cn("text-xs text-muted-foreground", !isOpen && "hidden")}
-          >
-            Chatty Friends Corner v1.0
-          </p>
+          <div className="flex flex-col gap-4">
+            <Button
+              variant="ghost"
+              className={cn(
+                "w-full justify-start gap-3 text-left font-normal text-theme-purple hover:text-theme-purple-dark hover:bg-theme-purple/10",
+                !isOpen && "justify-center p-2"
+              )}
+              onClick={handleLogout}
+            >
+              <LogOut size={18} />
+              {isOpen && <span>Log Out</span>}
+            </Button>
+            <p
+              className={cn("text-xs text-muted-foreground", !isOpen && "hidden")}
+            >
+              MindMates v1.0
+            </p>
+          </div>
         </div>
       </div>
     </aside>
