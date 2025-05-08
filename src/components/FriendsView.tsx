@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { userService, type User, type MindTribute, MindTributeType } from "@/services/userService";
 
 interface FriendsViewProps {
@@ -34,6 +34,7 @@ const getScoreColor = (type: MindTributeType, score: number): string => {
 
 const FriendsView = ({ onReturn }: FriendsViewProps) => {
   const [supporting, setSupporting] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   // Load supporting users on component mount
   useEffect(() => {
@@ -41,6 +42,14 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
     const supportingUsers = userService.getSupporting("1");
     setSupporting(supportingUsers);
   }, []);
+
+  const handleUserClick = (user: User) => {
+    setSelectedUser(user);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedUser(null);
+  };
 
   return (
     <div className="flex flex-col h-full p-4">
@@ -79,7 +88,8 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
             return (
               <div
                 key={user.id}
-                className="flex items-start gap-3 p-4 rounded-lg hover:bg-theme-purple/5 transition-colors"
+                className="flex items-start gap-3 p-4 rounded-lg hover:bg-theme-purple/5 transition-colors cursor-pointer"
+                onClick={() => handleUserClick(user)}
               >
                 <Avatar>
                   <AvatarImage src="" />
@@ -119,6 +129,49 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
           })}
         </div>
       </div>
+
+      {/* Modal for showing all mindTributes */}
+      {selectedUser && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-theme-purple-dark">
+                {selectedUser.name}'s Emotional State
+              </h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleCloseModal}
+                className="hover:bg-theme-purple/10"
+              >
+                <X size={18} />
+              </Button>
+            </div>
+            
+            <div className="space-y-4">
+              {selectedUser.mindTributes?.map((tribute, index) => (
+                <div
+                  key={index}
+                  className="p-4 rounded-lg border border-theme-purple/20"
+                  style={{ backgroundColor: getScoreColor(tribute.type, tribute.score) + '20' }}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-medium text-theme-purple-dark">
+                      {tribute.type.charAt(0).toUpperCase() + tribute.type.slice(1)}
+                    </h4>
+                    <span className="text-sm font-medium" style={{ color: getScoreColor(tribute.type, tribute.score) }}>
+                      Score: {tribute.score}/5
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {tribute.summary}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
