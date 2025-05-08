@@ -3,6 +3,8 @@ import userData from "@/data/users.json";
 export interface User {
   id: string;
   name: string;
+  email: string;
+  password: string;
   pronouns: string;
   mySupporters: string[];
   supporting: string[];
@@ -10,17 +12,17 @@ export interface User {
 }
 
 export interface MindTribute {
-  type: MindTributeType, 
-  score: number, 
-  summary: string
-};
+  type: MindTributeType;
+  score: number;
+  summary: string;
+}
 
 export enum MindTributeType {
   anxiety = "anxiety",
   sadness = "sadness",
   loneliness = "loneliness",
   fear = "fear",
-  anger = "anger"
+  anger = "anger",
 }
 
 class UserService {
@@ -45,7 +47,7 @@ class UserService {
   getSupporting(userId: string): User[] {
     const user = this.getUserById(userId);
     if (!user) return [];
-    return (user as any).supporties
+    return (user as any).supporting
       .map((supportingId: string) => this.getUserById(supportingId))
       .filter((user): user is User => user !== undefined);
   }
@@ -56,7 +58,7 @@ class UserService {
     return user.mindTributes || [];
   }
 
-  createUser(name: string, pronouns: string): User {
+  createUser(name: string, pronouns: string, email: string, password: string): User {
     // Generate a new ID (simple increment from the last user's ID)
     const lastUser = this.users[this.users.length - 1];
     const newId = (parseInt(lastUser.id) + 1).toString();
@@ -65,9 +67,11 @@ class UserService {
       id: newId,
       name,
       pronouns,
+      email,
+      password,
       mySupporters: [],
       supporting: [],
-      mindTributes: null
+      mindTributes: null,
     };
 
     // Add the new user to the users array

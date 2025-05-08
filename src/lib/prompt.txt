@@ -76,6 +76,17 @@ A score of 10 indicates an urgent emotional state or possible mental health emer
 * Mentions of panic attacks, breakdowns, desperation
 * Expressions suggesting harm, hopelessness, or fear for safety
 
+Summarizing history:
+write a 5-7 words summary, considering previous member's messages as per the relevant emotion label. 
+For example: 
+[
+        {"type": "anxiety", "score": 3, "summary": "Regular anxiety about upcoming presentations"},
+        {"type": "sadness", "score": 2, "summary": "Occasional sadness about missed opportunities"},
+        {"type": "loneliness", "score": 1, "summary": "Rare moments of feeling alone"},
+        {"type": "fear", "score": 5, "summary": "Dealing with fear of major life changes"},
+        {"type": "anger", "score": 2, "summary": "Some frustration with current circumstances"}
+      ]
+
 Additional instructions for the output:
 *  Do not omit any label from the mindTributes array.
 *  Keep the order of labels fixed.
@@ -95,11 +106,11 @@ JSON string for suggested response in this fashion:
 {
   "chatResponse": "Your empathetic and context-aware response here.",
   "mindTributes": [
-    { "label": "anxiety", "score": number },
-    { "label": "sadness", "score": number },
-    { "label": "loneliness", "score": number },
-    { "label": "fear", "score": number },
-    { "label": "anger", "score": number }
+    { "label": "anxiety", "score": number, summary: string - summary, considering previous member's messages as per the relevant emotion label},
+    { "label": "sadness", "score": number, summary: string - summary, considering previous member's messages as per the relevant emotion label},
+    { "label": "loneliness", "score": number, summary: string - summary, considering previous member's messages as per the relevant emotion label},
+    { "label": "fear", "score": number, summary: string - summary, considering previous member's messages as per the relevant emotion label},
+    { "label": "anger", "score": number, summary: string - summary, considering previous member's messages as per the relevant emotion label}
   ]
 }
 

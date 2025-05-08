@@ -40,6 +40,13 @@ const Landing = () => {
     if (loggedInUser) {
       navigate("/app");
     }
+
+    // Initialize users in local storage with data from userService
+    const existingUsers = localStorage.getItem("users");
+    if (!existingUsers) {
+      const allUsers = userService.getAllUsers();
+      localStorage.setItem("users", JSON.stringify(allUsers));
+    }
   }, [navigate]);
 
   const validateSignUpForm = () => {
@@ -88,7 +95,12 @@ const Landing = () => {
     }
 
     // Create new user in userService
-    const newAppUser = userService.createUser(formData.name, formData.pronouns);
+    const newAppUser = userService.createUser(
+      formData.name,
+      formData.pronouns,
+      formData.email,
+      formData.password
+    );
 
     // Create auth user for local storage
     const newAuthUser = {
@@ -96,11 +108,14 @@ const Landing = () => {
       email: formData.email,
       password: formData.password,
       pronouns: formData.pronouns,
-      appUserId: newAppUser.id // Store the app user ID for reference
+      appUserId: newAppUser.id, // Store the app user ID for reference
     };
 
     // Save user to local storage
-    localStorage.setItem("users", JSON.stringify([...existingUsers, newAuthUser]));
+    localStorage.setItem(
+      "users",
+      JSON.stringify([...existingUsers, newAuthUser])
+    );
     localStorage.setItem("currentUser", JSON.stringify(newAuthUser));
 
     toast({
@@ -146,21 +161,18 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pink-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-theme-purple-light/30 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <div className="flex items-center justify-center mb-8">
+        <div className="flex flex-col items-center justify-center mb-8">
           <img
             src={logo}
             alt="Mindmates Logo"
-            className="w-16 h-16 object-contain mr-4"
+            className="w-16 h-16 object-contain mb-1"
           />
-          <span className="text-4xl font-bold text-pink-600 tracking-tight">
-            mindmates
+          <span className="text-4xl font-bold text-theme-purple tracking-tight">
+            mindMates
           </span>
         </div>
-        <h1 className="text-3xl font-bold text-center mb-8 text-pink-600">
-          Welcome to Chatty Friends Corner!
-        </h1>
 
         <Tabs
           defaultValue="login"
@@ -187,7 +199,7 @@ const Landing = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
-                  className="border-pink-200 focus:border-pink-400"
+                  className="border-theme-purple/20 focus:border-theme-purple"
                 />
               </div>
 
@@ -201,13 +213,13 @@ const Landing = () => {
                     setFormData({ ...formData, password: e.target.value })
                   }
                   required
-                  className="border-pink-200 focus:border-pink-400"
+                  className="border-theme-purple/20 focus:border-theme-purple"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white"
+                className="w-full bg-theme-purple hover:bg-theme-purple-dark text-white"
               >
                 Login
               </Button>
@@ -225,7 +237,7 @@ const Landing = () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   required
-                  className="border-pink-200 focus:border-pink-400"
+                  className="border-theme-purple/20 focus:border-theme-purple"
                 />
               </div>
 
@@ -239,7 +251,7 @@ const Landing = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
-                  className="border-pink-200 focus:border-pink-400"
+                  className="border-theme-purple/20 focus:border-theme-purple"
                 />
               </div>
 
@@ -253,7 +265,7 @@ const Landing = () => {
                     setFormData({ ...formData, password: e.target.value })
                   }
                   required
-                  className="border-pink-200 focus:border-pink-400"
+                  className="border-theme-purple/20 focus:border-theme-purple"
                 />
               </div>
 
@@ -270,7 +282,7 @@ const Landing = () => {
                     })
                   }
                   required
-                  className="border-pink-200 focus:border-pink-400"
+                  className="border-theme-purple/20 focus:border-theme-purple"
                 />
               </div>
 
@@ -282,7 +294,7 @@ const Landing = () => {
                     setFormData({ ...formData, pronouns: value })
                   }
                 >
-                  <SelectTrigger className="border-pink-200 focus:border-pink-400">
+                  <SelectTrigger className="border-theme-purple/20 focus:border-theme-purple">
                     <SelectValue placeholder="Select pronouns" />
                   </SelectTrigger>
                   <SelectContent>
@@ -296,7 +308,7 @@ const Landing = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white"
+                className="w-full bg-theme-purple hover:bg-theme-purple-dark text-white"
               >
                 Sign Up
               </Button>

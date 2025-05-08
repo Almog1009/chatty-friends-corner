@@ -3,141 +3,357 @@
     {
       "id": "1",
       "name": "Alex Johnson",
+      "email": "alex.johnson@example.com",
       "pronouns": "he/him",
+      "password": "123456",
       "mySupporters": ["2", "5"],
-      "supporties": ["3", "7"],
+      "supporting": ["3", "7"],
       "mindTributes": [
-        {"type": "anxiety", "score": 2, "summary": "Feeling occasionally anxious about work deadlines"},
-        {"type": "sadness", "score": 3, "summary": "Processing some mild sadness about recent changes"},
-        {"type": "loneliness", "score": 2, "summary": "Sometimes feeling disconnected from others"},
-        {"type": "fear", "score": 1, "summary": "Minor concerns about future uncertainties"},
-        {"type": "anger", "score": 2, "summary": "Some frustration with daily challenges"}
+        {
+          "type": "anxiety",
+          "score": 2,
+          "summary": "Feeling occasionally anxious about work deadlines"
+        },
+        {
+          "type": "sadness",
+          "score": 3,
+          "summary": "Processing some mild sadness about recent changes"
+        },
+        {
+          "type": "loneliness",
+          "score": 2,
+          "summary": "Sometimes feeling disconnected from others"
+        },
+        {
+          "type": "fear",
+          "score": 1,
+          "summary": "Minor concerns about future uncertainties"
+        },
+        {
+          "type": "anger",
+          "score": 2,
+          "summary": "Some frustration with daily challenges"
+        }
       ]
     },
     {
       "id": "2",
       "name": "Sam Taylor",
+      "email": "sam.taylor@example.com",
       "pronouns": "she/her",
+      "password": "123456",
       "mySupporters": ["4", "6"],
-      "supporties": ["1", "8"],
+      "supporting": ["1", "8"],
       "mindTributes": [
-        {"type": "anxiety", "score": 3, "summary": "Regular anxiety about upcoming presentations"},
-        {"type": "sadness", "score": 2, "summary": "Occasional sadness about missed opportunities"},
-        {"type": "loneliness", "score": 1, "summary": "Rare moments of feeling alone"},
-        {"type": "fear", "score": 5, "summary": "Dealing with fear of major life changes"},
-        {"type": "anger", "score": 2, "summary": "Some frustration with current circumstances"}
+        {
+          "type": "anxiety",
+          "score": 3,
+          "summary": "Regular anxiety about upcoming presentations"
+        },
+        {
+          "type": "sadness",
+          "score": 2,
+          "summary": "Occasional sadness about missed opportunities"
+        },
+        {
+          "type": "loneliness",
+          "score": 1,
+          "summary": "Rare moments of feeling alone"
+        },
+        {
+          "type": "fear",
+          "score": 5,
+          "summary": "Dealing with fear of major life changes"
+        },
+        {
+          "type": "anger",
+          "score": 2,
+          "summary": "Some frustration with current circumstances"
+        }
       ]
     },
     {
       "id": "3",
       "name": "Jordan Lee",
+      "email": "jordan.lee@example.com",
       "pronouns": "they/them",
+      "password": "123456",
       "mySupporters": ["1", "9"],
-      "supporties": ["5", "10"],
+      "supporting": ["5", "10"],
       "mindTributes": [
-        {"type": "anxiety", "score": 2, "summary": "Mild anxiety about social situations"},
-        {"type": "sadness", "score": 3, "summary": "Processing some emotional challenges"},
-        {"type": "loneliness", "score": 4, "summary": "Experiencing loneliness after moving to a new city"},
-        {"type": "fear", "score": 2, "summary": "Some concerns about the future"},
-        {"type": "anger", "score": 2, "summary": "Minor frustrations with daily commute"}
+        {
+          "type": "anxiety",
+          "score": 2,
+          "summary": "Mild anxiety about social situations"
+        },
+        {
+          "type": "sadness",
+          "score": 3,
+          "summary": "Processing some emotional challenges"
+        },
+        {
+          "type": "loneliness",
+          "score": 4,
+          "summary": "Experiencing loneliness after moving to a new city"
+        },
+        {
+          "type": "fear",
+          "score": 2,
+          "summary": "Some concerns about the future"
+        },
+        {
+          "type": "anger",
+          "score": 2,
+          "summary": "Minor frustrations with daily commute"
+        }
       ]
     },
     {
       "id": "4",
       "name": "Casey Morgan",
+      "email": "casey.morgan@example.com",
       "pronouns": "she/her",
+      "password": "123456",
       "mySupporters": ["6", "8"],
-      "supporties": ["2", "9"],
+      "supporting": ["2", "9"],
       "mindTributes": [
-        {"type": "anxiety", "score": 3, "summary": "Some anxiety about daily responsibilities"},
-        {"type": "sadness", "score": 5, "summary": "Processing grief from recent loss"},
-        {"type": "loneliness", "score": 2, "summary": "Occasional feelings of isolation"},
-        {"type": "fear", "score": 4, "summary": "Concerned about future career prospects"},
-        {"type": "anger", "score": 1, "summary": "Rare moments of frustration"}
+        {
+          "type": "anxiety",
+          "score": 3,
+          "summary": "Some anxiety about daily responsibilities"
+        },
+        {
+          "type": "sadness",
+          "score": 5,
+          "summary": "Processing grief from recent loss"
+        },
+        {
+          "type": "loneliness",
+          "score": 2,
+          "summary": "Occasional feelings of isolation"
+        },
+        {
+          "type": "fear",
+          "score": 4,
+          "summary": "Concerned about future career prospects"
+        },
+        {
+          "type": "anger",
+          "score": 1,
+          "summary": "Rare moments of frustration"
+        }
       ]
     },
     {
       "id": "5",
       "name": "Robin Zhang",
+      "email": "robin.zhang@example.com",
       "pronouns": "he/him",
+      "password": "123456",
       "mySupporters": ["3", "10"],
-      "supporties": ["1", "7"],
+      "supporting": ["1", "7"],
       "mindTributes": [
-        {"type": "anxiety", "score": 5, "summary": "High anxiety about upcoming medical procedure"},
-        {"type": "sadness", "score": 2, "summary": "Some sadness about current situation"},
-        {"type": "loneliness", "score": 1, "summary": "Rare feelings of being alone"},
-        {"type": "fear", "score": 3, "summary": "Concerns about health outcomes"},
-        {"type": "anger", "score": 3, "summary": "Frustration with work-related challenges"}
+        {
+          "type": "anxiety",
+          "score": 5,
+          "summary": "High anxiety about upcoming medical procedure"
+        },
+        {
+          "type": "sadness",
+          "score": 2,
+          "summary": "Some sadness about current situation"
+        },
+        {
+          "type": "loneliness",
+          "score": 1,
+          "summary": "Rare feelings of being alone"
+        },
+        {
+          "type": "fear",
+          "score": 3,
+          "summary": "Concerns about health outcomes"
+        },
+        {
+          "type": "anger",
+          "score": 3,
+          "summary": "Frustration with work-related challenges"
+        }
       ]
     },
     {
       "id": "6",
       "name": "Morgan Rivera",
+      "email": "morgan.rivera@example.com",
       "pronouns": "they/them",
+      "password": "123456",
       "mySupporters": ["2", "7"],
-      "supporties": ["4", "8"],
+      "supporting": ["4", "8"],
       "mindTributes": [
-        {"type": "anxiety", "score": 2, "summary": "Mild anxiety about social interactions"},
-        {"type": "sadness", "score": 3, "summary": "Some sadness about current circumstances"},
-        {"type": "loneliness", "score": 4, "summary": "Feeling isolated in current living situation"},
-        {"type": "fear", "score": 3, "summary": "Mild concerns about financial stability"},
-        {"type": "anger", "score": 2, "summary": "Occasional frustration with daily life"}
+        {
+          "type": "anxiety",
+          "score": 2,
+          "summary": "Mild anxiety about social interactions"
+        },
+        {
+          "type": "sadness",
+          "score": 3,
+          "summary": "Some sadness about current circumstances"
+        },
+        {
+          "type": "loneliness",
+          "score": 4,
+          "summary": "Feeling isolated in current living situation"
+        },
+        {
+          "type": "fear",
+          "score": 3,
+          "summary": "Mild concerns about financial stability"
+        },
+        {
+          "type": "anger",
+          "score": 2,
+          "summary": "Occasional frustration with daily life"
+        }
       ]
     },
     {
       "id": "7",
       "name": "Jamie Wilson",
+      "email": "jamie.wilson@example.com",
       "pronouns": "she/her",
+      "password": "123456",
       "mySupporters": ["1", "5"],
-      "supporties": ["6", "10"],
+      "supporting": ["6", "10"],
       "mindTributes": [
-        {"type": "anxiety", "score": 2, "summary": "Light anxiety about social gatherings"},
-        {"type": "sadness", "score": 1, "summary": "Rare moments of sadness"},
-        {"type": "loneliness", "score": 2, "summary": "Sometimes feeling disconnected"},
-        {"type": "fear", "score": 1, "summary": "Minor concerns about the future"},
-        {"type": "anger", "score": 4, "summary": "Frustrated with recent workplace changes"}
+        {
+          "type": "anxiety",
+          "score": 2,
+          "summary": "Light anxiety about social gatherings"
+        },
+        { "type": "sadness", "score": 1, "summary": "Rare moments of sadness" },
+        {
+          "type": "loneliness",
+          "score": 2,
+          "summary": "Sometimes feeling disconnected"
+        },
+        {
+          "type": "fear",
+          "score": 1,
+          "summary": "Minor concerns about the future"
+        },
+        {
+          "type": "anger",
+          "score": 4,
+          "summary": "Frustrated with recent workplace changes"
+        }
       ]
     },
     {
       "id": "8",
       "name": "Kai Patel",
+      "email": "kai.patel@example.com",
       "pronouns": "he/him",
+      "password": "123456",
       "mySupporters": ["2", "6"],
-      "supporties": ["4", "9"],
+      "supporting": ["4", "9"],
       "mindTributes": [
-        {"type": "anxiety", "score": 3, "summary": "Some anxiety about family situation"},
-        {"type": "sadness", "score": 5, "summary": "Deep sadness about family situation"},
-        {"type": "loneliness", "score": 1, "summary": "Occasional feelings of disconnection"},
-        {"type": "fear", "score": 2, "summary": "Concerns about family dynamics"},
-        {"type": "anger", "score": 1, "summary": "Rare moments of frustration"}
+        {
+          "type": "anxiety",
+          "score": 3,
+          "summary": "Some anxiety about family situation"
+        },
+        {
+          "type": "sadness",
+          "score": 5,
+          "summary": "Deep sadness about family situation"
+        },
+        {
+          "type": "loneliness",
+          "score": 1,
+          "summary": "Occasional feelings of disconnection"
+        },
+        {
+          "type": "fear",
+          "score": 2,
+          "summary": "Concerns about family dynamics"
+        },
+        {
+          "type": "anger",
+          "score": 1,
+          "summary": "Rare moments of frustration"
+        }
       ]
     },
     {
       "id": "9",
       "name": "Elena Rodriguez",
+      "email": "elena.rodriguez@example.com",
       "pronouns": "she/her",
+      "password": "123456",
       "mySupporters": ["3", "4"],
-      "supporties": ["10"],
+      "supporting": ["10"],
       "mindTributes": [
-        {"type": "anxiety", "score": 3, "summary": "Some anxiety about upcoming changes"},
-        {"type": "sadness", "score": 2, "summary": "Processing some emotional challenges"},
-        {"type": "loneliness", "score": 1, "summary": "Rare feelings of isolation"},
-        {"type": "fear", "score": 4, "summary": "Fear of upcoming life changes"},
-        {"type": "anger", "score": 3, "summary": "Frustration with housing situation"}
+        {
+          "type": "anxiety",
+          "score": 3,
+          "summary": "Some anxiety about upcoming changes"
+        },
+        {
+          "type": "sadness",
+          "score": 2,
+          "summary": "Processing some emotional challenges"
+        },
+        {
+          "type": "loneliness",
+          "score": 1,
+          "summary": "Rare feelings of isolation"
+        },
+        {
+          "type": "fear",
+          "score": 4,
+          "summary": "Fear of upcoming life changes"
+        },
+        {
+          "type": "anger",
+          "score": 3,
+          "summary": "Frustration with housing situation"
+        }
       ]
     },
     {
       "id": "10",
-      "name": "Marcus Washington",
-      "pronouns": "he/him",
+      "name": "Hadar Mizrachi",
+      "email": "hadar@example.com",
+      "pronouns": "she/her",
+      "password": "123456",
       "mySupporters": ["3", "7"],
-      "supporties": ["5", "9"],
+      "supporting": ["5", "9"],
       "mindTributes": [
-        {"type": "anxiety", "score": 2, "summary": "Some anxiety about new environment"},
-        {"type": "sadness", "score": 5, "summary": "Processing grief from recent breakup"},
-        {"type": "loneliness", "score": 2, "summary": "Occasional isolation in new environment"},
-        {"type": "fear", "score": 3, "summary": "Concerns about future relationships"},
-        {"type": "anger", "score": 1, "summary": "Rare moments of frustration"}
+        {
+          "type": "anxiety",
+          "score": 2,
+          "summary": "Some anxiety about new environment"
+        },
+        {
+          "type": "sadness",
+          "score": 5,
+          "summary": "Processing grief from recent breakup"
+        },
+        {
+          "type": "loneliness",
+          "score": 2,
+          "summary": "Occasional isolation in new environment"
+        },
+        {
+          "type": "fear",
+          "score": 3,
+          "summary": "Concerns about future relationships"
+        },
+        {
+          "type": "anger",
+          "score": 1,
+          "summary": "Rare moments of frustration"
+        }
       ]
     }
   ]
