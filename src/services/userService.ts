@@ -4,13 +4,27 @@ export interface User {
   id: string;
   name: string;
   pronouns: string;
-  score: number;
-  summary: string;
-  friends: string[];
+  mySupporters: string[];
+  supporting: string[];
+  mindTributes: MindTribute[] | null;
+}
+
+export interface MindTribute {
+  type: MindTributeType, 
+  score: number, 
+  summary: string
+};
+
+export enum MindTributeType {
+  anxiety = "anxiety",
+  sadness = "sadness",
+  loneliness = "loneliness",
+  fear = "fear",
+  anger = "anger"
 }
 
 class UserService {
-  private users: User[] = userData.users;
+  private users: User[] = userData.users as unknown as User[];
 
   getAllUsers(): User[] {
     return this.users;
@@ -20,52 +34,27 @@ class UserService {
     return this.users.find((user) => user.id === id);
   }
 
-  getFriends(userId: string): User[] {
+  getSupporters(userId: string): User[] {
     const user = this.getUserById(userId);
     if (!user) return [];
-
-    return user.friends
-      .map((friendId) => this.getUserById(friendId))
+    return user.mySupporters
+      .map((supporterId) => this.getUserById(supporterId
+      ))
       .filter((user): user is User => user !== undefined);
   }
 
-  addFriend(userId: string, friendId: string): boolean {
+  getSupporting(userId: string): User[] {
     const user = this.getUserById(userId);
-    const friend = this.getUserById(friendId);
-
-    if (!user || !friend) return false;
-    if (user.friends.includes(friendId)) return false;
-
-    user.friends.push(friendId);
-    friend.friends.push(userId);
-    return true;
+    if (!user) return [];
+    return user.supporting
+      .map((supportingId) => this.getUserById(supportingId))
+      .filter((user): user is User => user !== undefined);
   }
 
-  removeFriend(userId: string, friendId: string): boolean {
+  getMindTributes(userId: string): MindTribute[] {
     const user = this.getUserById(userId);
-    const friend = this.getUserById(friendId);
-
-    if (!user || !friend) return false;
-
-    user.friends = user.friends.filter((id) => id !== friendId);
-    friend.friends = friend.friends.filter((id) => id !== userId);
-    return true;
-  }
-
-  updateUserScore(userId: string, newScore: number): boolean {
-    const user = this.getUserById(userId);
-    if (!user) return false;
-
-    user.score = newScore;
-    return true;
-  }
-
-  updateUserSummary(userId: string, newSummary: string): boolean {
-    const user = this.getUserById(userId);
-    if (!user) return false;
-
-    user.summary = newSummary;
-    return true;
+    if (!user) return [];
+    return user.mindTributes || [];
   }
 }
 
