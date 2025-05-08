@@ -6,7 +6,14 @@
       "pronouns": "he/him",
       "score": 85,
       "summary": "Friendly and outgoing person who loves to chat about technology and sports.",
-      "friends": ["2", "3"]
+      "friends": ["2", "3"],
+      "supporters": [
+        {
+          "firstName": "Michael",
+          "lastName": "Smith",
+          "phone": "+978546982625"
+        }
+      ]
     },
     {
       "id": "2",
@@ -14,7 +21,19 @@
       "pronouns": "she/her",
       "score": 92,
       "summary": "Creative artist with a passion for music and painting. Always up for a good conversation.",
-      "friends": ["1", "4"]
+      "friends": ["1", "4"],
+      "supporters": [
+        {
+          "firstName": "Emily",
+          "lastName": "Wilson",
+          "phone": "+15552223333"
+        },
+        {
+          "firstName": "David",
+          "lastName": "Chen",
+          "phone": "+15554445555"
+        }
+      ]
     },
     {
       "id": "3",
@@ -22,7 +41,19 @@
       "pronouns": "they/them",
       "score": 78,
       "summary": "Tech enthusiast and coffee lover. Enjoys discussing new innovations and travel experiences.",
-      "friends": ["1", "4"]
+      "friends": ["1", "4"],
+      "supporters": [
+        {
+          "firstName": "Sophia",
+          "lastName": "Rodriguez",
+          "phone": "+15556667777"
+        },
+        {
+          "firstName": "Marcus",
+          "lastName": "Johnson",
+          "phone": "+15558889999"
+        }
+      ]
     },
     {
       "id": "4",
@@ -30,7 +61,19 @@
       "pronouns": "she/her",
       "score": 88,
       "summary": "Bookworm and nature lover. Loves sharing stories about hiking adventures and favorite reads.",
-      "friends": ["2", "3"]
+      "friends": ["2", "3"],
+      "supporters": [
+        {
+          "firstName": "Olivia",
+          "lastName": "Park",
+          "phone": "+15551112222"
+        },
+        {
+          "firstName": "Noah",
+          "lastName": "Thompson",
+          "phone": "+15553334444"
+        }
+      ]
     }
   ]
 }

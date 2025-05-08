@@ -7,6 +7,13 @@ export interface User {
   score: number;
   summary: string;
   friends: string[];
+  supporters: Supporter[];
+}
+
+export interface Supporter {
+  phone: string;
+  firstName: string;
+  lastName: string;
 }
 
 class UserService {
