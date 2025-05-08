@@ -1,19 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import { llmService, ChatMessage, type Message } from '@/services/llmService';
-import { MessageCircle, Bot, ArrowLeft } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { llmService, ChatMessage, type Message } from "@/services/llmService";
+import { MessageCircle, Bot, ArrowLeft } from "lucide-react";
 
 interface ChatViewProps {
   onReturn?: () => void;
 }
 
 const ChatView = ({ onReturn }: ChatViewProps) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState("");
   const [showApiKeyInput, setShowApiKeyInput] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -30,27 +30,27 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
 
   // Scroll to bottom when messages change
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!message.trim()) return;
-    
+
     // Create user message
     const userMessage: ChatMessage = {
       id: Math.random().toString(36).substring(2, 10),
       content: message,
-      role: 'user',
-      timestamp: new Date()
+      role: "user",
+      timestamp: new Date(),
     };
-    
+
     // Add user message to messages state
-    setMessages(prevMessages => [...prevMessages, userMessage]);
-    
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+
     // Clear input field
-    setMessage('');
+    setMessage("");
 
     // If API key is not set, show a toast
     if (!apiKey) {
@@ -67,36 +67,34 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
 
     try {
       // Prepare context for API call
-      const context: Message[] = [
-        { 
-          role: 'system', 
-          content: 'You are a helpful AI assistant. Be concise and friendly in your responses.' 
-        },
-        ...messages.map(msg => ({
-          role: msg.role,
-          content: msg.content
-        } as Message))
+      const userMessages: string[] = [
+        ...messages
+          .filter((msg) => msg.role == "user")
+          .map((msg) => msg.content),
+        userMessage.content,
       ];
 
       // Call LLM service
-      const response = await llmService.sendMessage(userMessage.content, context);
-      
+      const response = await llmService.sendMessage(userMessages);
+
       // Create assistant message
       const assistantMessage: ChatMessage = {
         id: Math.random().toString(36).substring(2, 10),
         content: response,
-        role: 'assistant',
-        timestamp: new Date()
+        role: "assistant",
+        timestamp: new Date(),
       };
-      
+
       // Add assistant message to messages state
-      setMessages(prevMessages => [...prevMessages, assistantMessage]);
-      
+      setMessages((prevMessages) => [...prevMessages, assistantMessage]);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to get response from AI",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to get response from AI",
         variant: "destructive",
       });
     } finally {
@@ -127,7 +125,9 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
         {messages.length === 0 ? (
           <div className="max-w-md mx-auto bg-theme-purple/5 p-6 rounded-lg shadow-sm border border-theme-purple/20 mb-6">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-xl font-semibold text-theme-purple-dark">How are you today?</h2>
+              <h2 className="text-xl font-semibold text-theme-purple-dark">
+                How are you today?
+              </h2>
               {onReturn && (
                 <Button
                   variant="outline"
@@ -140,7 +140,9 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
                 </Button>
               )}
             </div>
-            <p className="text-sm text-muted-foreground">Share your feelings or just say hello!</p>
+            <p className="text-sm text-muted-foreground">
+              Share your feelings or just say hello!
+            </p>
           </div>
         ) : (
           <div className="space-y-4 max-w-md mx-auto">
@@ -158,22 +160,23 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
               </div>
             )}
             {messages.map((msg) => (
-              <div 
-                key={msg.id} 
+              <div
+                key={msg.id}
                 className={`p-4 rounded-lg max-w-[80%] ${
-                  msg.role === 'user' 
-                    ? 'bg-theme-purple/10 ml-auto' 
-                    : 'bg-white border border-theme-purple/20 mr-auto'
+                  msg.role === "user"
+                    ? "bg-theme-purple/10 ml-auto"
+                    : "bg-white border border-theme-purple/20 mr-auto"
                 }`}
               >
                 <div className="flex items-center mb-1">
-                  {msg.role === 'user' ? (
+                  {msg.role === "user" ? (
                     <MessageCircle className="h-4 w-4 mr-2 text-theme-purple" />
                   ) : (
                     <Bot className="h-4 w-4 mr-2 text-theme-purple" />
                   )}
                   <span className="text-xs text-muted-foreground">
-                    {msg.role === 'user' ? 'You' : 'AI'} • {msg.timestamp.toLocaleTimeString()}
+                    {msg.role === "user" ? "You" : "AI"} •{" "}
+                    {msg.timestamp.toLocaleTimeString()}
                   </span>
                 </div>
                 <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
@@ -187,7 +190,9 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
       {showApiKeyInput && (
         <div className="p-4 border-t border-theme-purple/20 bg-white/50 mb-2">
           <div className="max-w-md mx-auto">
-            <h3 className="text-sm font-medium mb-2">Enter your OpenAI API Key:</h3>
+            <h3 className="text-sm font-medium mb-2">
+              Enter your OpenAI API Key:
+            </h3>
             <div className="flex gap-2">
               <Input
                 type="password"
@@ -196,7 +201,7 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
                 placeholder="sk-..."
                 className="flex-1 focus-visible:ring-theme-purple"
               />
-              <Button 
+              <Button
                 onClick={handleSaveApiKey}
                 className="bg-theme-purple hover:bg-theme-purple-dark"
               >
@@ -219,12 +224,12 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
             className="flex-1 focus-visible:ring-theme-purple"
             disabled={isLoading}
           />
-          <Button 
+          <Button
             type="submit"
             className="bg-theme-purple hover:bg-theme-purple-dark"
             disabled={isLoading}
           >
-            {isLoading ? 'Sending...' : 'Send'}
+            {isLoading ? "Sending..." : "Send"}
           </Button>
         </form>
       </div>
