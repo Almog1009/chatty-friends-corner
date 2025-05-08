@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Settings, Users } from 'lucide-react';
+import { Settings, Users, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -21,7 +21,20 @@ const AppSidebar = ({ isOpen, onClose, activeSection, onSectionChange }: AppSide
     >
       <div className="h-full flex flex-col overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-theme-purple/20">
-          <h2 className="font-semibold text-theme-purple">Settings</h2>
+          <div className="flex items-center gap-2">
+            {activeSection !== "chat" && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => onSectionChange("chat")}
+                className="hover:bg-theme-purple/10"
+              >
+                <ArrowLeft size={18} className="text-theme-purple" />
+                <span className="sr-only">Back to chat</span>
+              </Button>
+            )}
+            <h2 className="font-semibold text-theme-purple">Settings</h2>
+          </div>
           <Button 
             variant="ghost" 
             size="icon" 

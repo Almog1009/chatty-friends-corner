@@ -5,6 +5,7 @@ import AppSidebar from '@/components/AppSidebar';
 import ChatView from '@/components/ChatView';
 import FriendsView from '@/components/FriendsView';
 import { cn } from '@/lib/utils';
+import { ArrowLeft, MessageCircle } from 'lucide-react';
 
 const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -78,6 +79,17 @@ const Index = () => {
                  activeSection === 'friends' ? 'Friends List' : 'App Settings'}
               </h1>
             </div>
+            {activeSection !== 'chat' && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handleSectionChange('chat')}
+                className="border-theme-purple/20 text-theme-purple hover:bg-theme-purple/10"
+              >
+                <ArrowLeft size={16} className="mr-1" />
+                Back to Chat
+              </Button>
+            )}
           </div>
         </header>
         
@@ -86,9 +98,31 @@ const Index = () => {
           {activeSection === 'chat' && <ChatView />}
           {activeSection === 'friends' && <FriendsView />}
           {activeSection === 'settings' && (
-            <div className="p-4">
+            <div className="p-4 max-w-md mx-auto">
               <h2 className="text-xl font-semibold mb-4">App Settings</h2>
-              <p className="text-muted-foreground">Settings panel coming soon...</p>
+              
+              <div className="space-y-6">
+                <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
+                  <h3 className="text-lg font-medium mb-3">Chat Settings</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Configure your chat experience with Chatty Friends Corner
+                  </p>
+                  <Button 
+                    onClick={() => handleSectionChange('chat')}
+                    className="bg-theme-purple hover:bg-theme-purple-dark flex items-center gap-2"
+                  >
+                    <MessageCircle size={18} />
+                    Go to Chatty Friends Corner
+                  </Button>
+                </div>
+                
+                <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
+                  <h3 className="text-lg font-medium mb-2">Interface Settings</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Settings for UI preferences coming soon...
+                  </p>
+                </div>
+              </div>
             </div>
           )}
         </div>
