@@ -1,3 +1,6 @@
+import { MindTribute } from "./userService";
+import prompt from "@/lib/prompt.txt?raw";
+
 export interface Message {
   role: "user" | "assistant" | "system";
   content: string;
@@ -10,8 +13,10 @@ export interface ChatMessage {
   timestamp: Date;
 }
 
-// Generate a unique ID for messages
-const generateId = () => Math.random().toString(36).substring(2, 10);
+export interface LlmResponse {
+  chatResponse: string;
+  mindTributes: MindTribute[];
+}
 
 export class LlmService {
   private apiKey: string | null = null;
@@ -34,15 +39,10 @@ export class LlmService {
     return this.apiKey;
   }
 
-  async sendMessage(message: string, context: Message[]): Promise<string> {
+  async sendRequest(body: object): Promise<any> {
     if (!this.apiKey) {
       throw new Error("API key is not set");
     }
-
-    const messages: Message[] = [
-      ...context,
-      { role: "user", content: message },
-    ];
 
     try {
       const response = await fetch(
@@ -53,12 +53,7 @@ export class LlmService {
             "Content-Type": "application/json",
             Authorization: `Bearer ${this.apiKey}`,
           },
-          body: JSON.stringify({
-            model: this.model,
-            messages: messages,
-            temperature: 0.7,
-            max_tokens: 500,
-          }),
+          body: JSON.stringify(body),
         }
       );
 
@@ -69,11 +64,64 @@ export class LlmService {
         );
       }
 
-      const data = await response.json();
-      return data.choices[0].message.content;
+      return response.json();
     } catch (error) {
       console.error("Error calling LLM API:", error);
       throw error;
+    }
+  }
+
+  async sendMessage(userContext: string[]): Promise<string> {
+    const messages: Message[] = [
+      {
+        role: "user",
+        content: prompt.replace("{{userMessages}}", userContext.join("\n")),
+      },
+    ];
+
+    const response = await this.sendRequest({
+      model: this.model,
+      messages: messages,
+      temperature: 0.7,
+      max_tokens: 500,
+    });
+
+    console.log(response);
+
+    const llmResponse = await this.parseLlmResponse(response);
+    return llmResponse.chatResponse;
+  }
+
+  async parseLlmResponse(response: any): Promise<LlmResponse> {
+    try {
+      const llmResponse: LlmResponse = JSON.parse(
+        response.choices[0].message.content
+      );
+      return llmResponse;
+    } catch (error) {
+      try {
+        const reRunResponse = await this.sendRequest({
+          model: this.model,
+          messages: [
+            {
+              role: "user",
+              content:
+                "Please fix this json response:\n" +
+                response.choices[0].message.content +
+                "\n\n" +
+                "Send the fixed json response back only, nothing else.",
+            },
+          ],
+          temperature: 0.7,
+          max_tokens: 500,
+        });
+        const llmResponse: LlmResponse = JSON.parse(
+          reRunResponse.choices[0].message.content
+        );
+        return llmResponse;
+      } catch (error) {
+        throw error;
+      }
     }
   }
 }
