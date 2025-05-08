@@ -1,12 +1,15 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { llmService, ChatMessage, type Message } from '@/services/llmService';
-import { MessageCircle, Bot } from 'lucide-react';
+import { MessageCircle, Bot, ArrowLeft } from 'lucide-react';
 
-const ChatView = () => {
+interface ChatViewProps {
+  onReturn?: () => void;
+}
+
+const ChatView = ({ onReturn }: ChatViewProps) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -123,11 +126,37 @@ const ChatView = () => {
       <div className="flex-1 overflow-y-auto p-4">
         {messages.length === 0 ? (
           <div className="max-w-md mx-auto bg-theme-purple/5 p-6 rounded-lg shadow-sm border border-theme-purple/20 mb-6">
-            <h2 className="text-xl font-semibold text-theme-purple-dark mb-2">How are you today?</h2>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-xl font-semibold text-theme-purple-dark">How are you today?</h2>
+              {onReturn && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={onReturn}
+                  className="border-theme-purple/20 text-theme-purple hover:bg-theme-purple/10"
+                >
+                  <ArrowLeft size={16} className="mr-1" />
+                  Back to Chat
+                </Button>
+              )}
+            </div>
             <p className="text-sm text-muted-foreground">Share your feelings or just say hello!</p>
           </div>
         ) : (
           <div className="space-y-4 max-w-md mx-auto">
+            {onReturn && (
+              <div className="flex justify-end mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={onReturn}
+                  className="border-theme-purple/20 text-theme-purple hover:bg-theme-purple/10"
+                >
+                  <ArrowLeft size={16} className="mr-1" />
+                  Back to Chat
+                </Button>
+              </div>
+            )}
             {messages.map((msg) => (
               <div 
                 key={msg.id} 

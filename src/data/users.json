@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Alex Johnson",
+      "gender": "male",
+      "score": 85,
+      "summary": "Friendly and outgoing person who loves to chat about technology and sports.",
+      "friends": ["2", "3"]
+    },
+    {
+      "id": "2",
+      "name": "Sam Taylor",
+      "gender": "female",
+      "score": 92,
+      "summary": "Creative artist with a passion for music and painting. Always up for a good conversation.",
+      "friends": ["1", "4"]
+    },
+    {
+      "id": "3",
+      "name": "Jordan Lee",
+      "gender": "non-binary",
+      "score": 78,
+      "summary": "Tech enthusiast and coffee lover. Enjoys discussing new innovations and travel experiences.",
+      "friends": ["1", "4"]
+    },
+    {
+      "id": "4",
+      "name": "Casey Morgan",
+      "gender": "female",
+      "score": 88,
+      "summary": "Bookworm and nature lover. Loves sharing stories about hiking adventures and favorite reads.",
+      "friends": ["2", "3"]
+    }
+  ]
+} 
