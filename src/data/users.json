@@ -4,33 +4,111 @@
       "id": "1",
       "name": "Alex Johnson",
       "pronouns": "he/him",
-      "score": 85,
-      "summary": "Friendly and outgoing person who loves to chat about technology and sports.",
-      "friends": ["2", "3"]
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "sad", "score": 2},
+        {"type": "happy", "score": 3}
+      ]
     },
     {
       "id": "2",
       "name": "Sam Taylor",
       "pronouns": "she/her",
-      "score": 92,
-      "summary": "Creative artist with a passion for music and painting. Always up for a good conversation.",
-      "friends": ["1", "4"]
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "anxious", "score": 3},
+        {"type": "creative", "score": 5}
+      ]
     },
     {
       "id": "3",
       "name": "Jordan Lee",
       "pronouns": "they/them",
-      "score": 78,
-      "summary": "Tech enthusiast and coffee lover. Enjoys discussing new innovations and travel experiences.",
-      "friends": ["1", "4"]
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "focused", "score": 4},
+        {"type": "tired", "score": 2}
+      ]
     },
     {
       "id": "4",
       "name": "Casey Morgan",
       "pronouns": "she/her",
-      "score": 88,
-      "summary": "Bookworm and nature lover. Loves sharing stories about hiking adventures and favorite reads.",
-      "friends": ["2", "3"]
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "calm", "score": 4},
+        {"type": "curious", "score": 5}
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Robin Zhang",
+      "pronouns": "he/him",
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "motivated", "score": 5},
+        {"type": "stressed", "score": 3}
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Morgan Rivera",
+      "pronouns": "they/them",
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "peaceful", "score": 4},
+        {"type": "hopeful", "score": 3}
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Jamie Wilson",
+      "pronouns": "she/her",
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "excited", "score": 4},
+        {"type": "nervous", "score": 2}
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Kai Patel",
+      "pronouns": "he/him",
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "inspired", "score": 5},
+        {"type": "overwhelmed", "score": 1}
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Elena Rodriguez",
+      "pronouns": "she/her",
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "content", "score": 4},
+        {"type": "reflective", "score": 3}
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Marcus Washington",
+      "pronouns": "he/him",
+      "mySupporters": [],
+      "supporties": [],
+      "mindTributes": [
+        {"type": "determined", "score": 5},
+        {"type": "distracted", "score": 2}
+      ]
     }
   ]
 }
