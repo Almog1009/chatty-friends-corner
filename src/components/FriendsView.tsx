@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArrowLeft, X } from "lucide-react";
 import { userService, type User, type MindTribute, MindTributeType } from "@/services/userService";
+import { cn } from "@/lib/utils";
 
 interface FriendsViewProps {
   onReturn?: () => void;
@@ -109,8 +110,15 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
                       <p className="font-medium">{user.name}</p>
                       <p className="text-xs text-muted-foreground">{user.pronouns}</p>
                     </div>
-                    <Button variant="outline" size="sm" className="text-xs">
-                      Message
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className={cn(
+                        "text-xs",
+                        selectedUser?.id === user.id && "bg-theme-purple/20 text-theme-purple-dark"
+                      )}
+                    >
+                      Info
                     </Button>
                   </div>
                   {highestTribute && (
