@@ -4,110 +4,110 @@
       "id": "1",
       "name": "Alex Johnson",
       "pronouns": "he/him",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["2", "5"],
+      "supporties": ["3", "7"],
       "mindTributes": [
-        {"type": "sad", "score": 2},
-        {"type": "happy", "score": 3}
+        {"type": "anxiety", "score": 2, "summary": "Feeling occasionally anxious about work deadlines"},
+        {"type": "sadness", "score": 3, "summary": "Processing some mild sadness about recent changes"}
       ]
     },
     {
       "id": "2",
       "name": "Sam Taylor",
       "pronouns": "she/her",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["4", "6"],
+      "supporties": ["1", "8"],
       "mindTributes": [
-        {"type": "anxious", "score": 3},
-        {"type": "creative", "score": 5}
+        {"type": "anxiety", "score": 3, "summary": "Regular anxiety about upcoming presentations"},
+        {"type": "fear", "score": 5, "summary": "Dealing with fear of major life changes"}
       ]
     },
     {
       "id": "3",
       "name": "Jordan Lee",
       "pronouns": "they/them",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["1", "9"],
+      "supporties": ["5", "10"],
       "mindTributes": [
-        {"type": "focused", "score": 4},
-        {"type": "tired", "score": 2}
+        {"type": "loneliness", "score": 4, "summary": "Experiencing loneliness after moving to a new city"},
+        {"type": "anger", "score": 2, "summary": "Minor frustrations with daily commute"}
       ]
     },
     {
       "id": "4",
       "name": "Casey Morgan",
       "pronouns": "she/her",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["6", "8"],
+      "supporties": ["2", "9"],
       "mindTributes": [
-        {"type": "calm", "score": 4},
-        {"type": "curious", "score": 5}
+        {"type": "fear", "score": 4, "summary": "Concerned about future career prospects"},
+        {"type": "sadness", "score": 5, "summary": "Processing grief from recent loss"}
       ]
     },
     {
       "id": "5",
       "name": "Robin Zhang",
       "pronouns": "he/him",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["3", "10"],
+      "supporties": ["1", "7"],
       "mindTributes": [
-        {"type": "motivated", "score": 5},
-        {"type": "stressed", "score": 3}
+        {"type": "anxiety", "score": 5, "summary": "High anxiety about upcoming medical procedure"},
+        {"type": "anger", "score": 3, "summary": "Frustration with work-related challenges"}
       ]
     },
     {
       "id": "6",
       "name": "Morgan Rivera",
       "pronouns": "they/them",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["2", "7"],
+      "supporties": ["4", "8"],
       "mindTributes": [
-        {"type": "peaceful", "score": 4},
-        {"type": "hopeful", "score": 3}
+        {"type": "loneliness", "score": 4, "summary": "Feeling isolated in current living situation"},
+        {"type": "fear", "score": 3, "summary": "Mild concerns about financial stability"}
       ]
     },
     {
       "id": "7",
       "name": "Jamie Wilson",
       "pronouns": "she/her",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["1", "5"],
+      "supporties": ["6", "10"],
       "mindTributes": [
-        {"type": "excited", "score": 4},
-        {"type": "nervous", "score": 2}
+        {"type": "anger", "score": 4, "summary": "Frustrated with recent workplace changes"},
+        {"type": "anxiety", "score": 2, "summary": "Light anxiety about social gatherings"}
       ]
     },
     {
       "id": "8",
       "name": "Kai Patel",
       "pronouns": "he/him",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["2", "6"],
+      "supporties": ["4", "9"],
       "mindTributes": [
-        {"type": "inspired", "score": 5},
-        {"type": "overwhelmed", "score": 1}
+        {"type": "sadness", "score": 5, "summary": "Deep sadness about family situation"},
+        {"type": "loneliness", "score": 1, "summary": "Occasional feelings of disconnection"}
       ]
     },
     {
       "id": "9",
       "name": "Elena Rodriguez",
       "pronouns": "she/her",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["3", "4"],
+      "supporties": ["10"],
       "mindTributes": [
-        {"type": "content", "score": 4},
-        {"type": "reflective", "score": 3}
+        {"type": "fear", "score": 4, "summary": "Fear of upcoming life changes"},
+        {"type": "anger", "score": 3, "summary": "Frustration with housing situation"}
       ]
     },
     {
       "id": "10",
       "name": "Marcus Washington",
       "pronouns": "he/him",
-      "mySupporters": [],
-      "supporties": [],
+      "mySupporters": ["3", "7"],
+      "supporties": ["5", "9"],
       "mindTributes": [
-        {"type": "determined", "score": 5},
-        {"type": "distracted", "score": 2}
+        {"type": "sadness", "score": 5, "summary": "Processing grief from recent breakup"},
+        {"type": "loneliness", "score": 2, "summary": "Occasional isolation in new environment"}
       ]
     }
   ]
