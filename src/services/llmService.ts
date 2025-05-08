@@ -1,7 +1,7 @@
 
 // Simple service to handle communication with LLM APIs
 
-interface Message {
+export interface Message {
   role: 'user' | 'assistant' | 'system';
   content: string;
 }
