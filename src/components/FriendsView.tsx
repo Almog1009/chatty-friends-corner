@@ -20,10 +20,10 @@ const getScoreColor = (type: MindTributeType, score: number): string => {
   };
 
   const baseColor = baseColors[type];
-  // Convert score to a percentage (assuming max score is 5)
-  const percentage = Math.min(score / 5, 1);
+  // Convert score to a percentage (assuming max score is 10)
+  const percentage = Math.min(score / 10, 1);
   // Adjust opacity based on score (higher score = more opaque)
-  const opacity = 0.3 + (percentage * 0.7); // Range from 0.3 to 1.0
+  const opacity = 0.7 + (percentage * 0.3); // Range from 0.7 to 1.0
   
   // Convert hex to rgba
   const r = parseInt(baseColor.slice(1, 3), 16);
@@ -168,7 +168,7 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
                       {tribute.type.charAt(0).toUpperCase() + tribute.type.slice(1)}
                     </h4>
                     <span className="text-sm font-medium" style={{ color: getScoreColor(tribute.type, tribute.score) }}>
-                      Score: {tribute.score}/5
+                      Score: {tribute.score}/10
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground">

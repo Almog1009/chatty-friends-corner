@@ -6,11 +6,14 @@ import FriendsView from "@/components/FriendsView";
 import { cn } from "@/lib/utils";
 import { userService, type User } from "@/services/userService";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState("chat");
   const [supporters, setSupporters] = useState<User[]>([]);
+  const [potentialSupporters, setPotentialSupporters] = useState<User[]>([]);
 
   useEffect(() => {
     // Set initial sidebar state based on screen size
@@ -32,7 +35,27 @@ const Index = () => {
     // Load supporters for the current user (using ID "1" for now)
     const currentSupporters = userService.getSupporters("1");
     setSupporters(currentSupporters);
+
+    // Load all users and filter out current supporters
+    const allUsers = userService.getAllUsers();
+    const currentSupporterIds = new Set(currentSupporters.map(s => s.id));
+    const potential = allUsers.filter(user => !currentSupporterIds.has(user.id));
+    setPotentialSupporters(potential);
   }, []);
+
+  const handleAddSupporter = (user: User) => {
+    // Add to supporters list
+    setSupporters(prev => [...prev, user]);
+    // Remove from potential supporters
+    setPotentialSupporters(prev => prev.filter(u => u.id !== user.id));
+  };
+
+  const handleRemoveSupporter = (user: User) => {
+    // Remove from supporters list
+    setSupporters(prev => prev.filter(u => u.id !== user.id));
+    // Add back to potential supporters
+    setPotentialSupporters(prev => [...prev, user]);
+  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -46,46 +69,129 @@ const Index = () => {
     }
   };
 
-  const SettingsView = () => (
-    <div className="p-4 max-w-md mx-auto">
-      <h2 className="text-xl font-semibold mb-4">App Settings</h2>
-      
-      <div className="space-y-6">
-        <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
-          <h3 className="text-lg font-medium mb-3">My Supporters</h3>
-          <div className="space-y-2">
-            {supporters.map((supporter) => (
-              <div
-                key={supporter.id}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-theme-purple/5 transition-colors"
+  const SettingsView = () => {
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showAddSupporters, setShowAddSupporters] = useState(false);
+
+    const filteredSupporters = supporters.filter(supporter =>
+      supporter.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return (
+      <div className="p-4 max-w-md mx-auto">
+        <h2 className="text-xl font-semibold mb-4">App Settings</h2>
+        
+        <div className="space-y-6">
+          <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-medium">My Supporters</h3>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAddSupporters(!showAddSupporters)}
+                className="text-xs"
               >
-                <Avatar>
-                  <AvatarImage src="" />
-                  <AvatarFallback className="bg-theme-purple/20 text-theme-purple-dark">
-                    {supporter.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <p className="font-medium">{supporter.name}</p>
-                  <p className="text-xs text-muted-foreground">{supporter.pronouns}</p>
+                {showAddSupporters ? "Hide Add Supporters" : "Add Supporters"}
+              </Button>
+            </div>
+            <div className="relative mb-4">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                type="text"
+                placeholder="Search supporters..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 focus-visible:ring-theme-purple"
+              />
+            </div>
+            <div className="space-y-2">
+              {filteredSupporters.map((supporter) => (
+                <div
+                  key={supporter.id}
+                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-theme-purple/5 transition-colors"
+                >
+                  <Avatar>
+                    <AvatarImage src="" />
+                    <AvatarFallback className="bg-theme-purple/20 text-theme-purple-dark">
+                      {supporter.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="font-medium">{supporter.name}</p>
+                    <p className="text-xs text-muted-foreground">{supporter.pronouns}</p>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleRemoveSupporter(supporter)}
+                    className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                  >
+                    Remove
+                  </Button>
+                </div>
+              ))}
+              {filteredSupporters.length === 0 && (
+                <p className="text-sm text-muted-foreground text-center py-2">
+                  No supporters found
+                </p>
+              )}
+            </div>
+
+            {showAddSupporters && (
+              <div className="mt-4 pt-4 border-t border-theme-purple/20">
+                <h4 className="text-sm font-medium mb-3">Add New Supporters</h4>
+                <div className="space-y-2">
+                  {potentialSupporters.map((user) => (
+                    <div
+                      key={user.id}
+                      className="flex items-center gap-3 p-3 rounded-lg hover:bg-theme-purple/5 transition-colors"
+                    >
+                      <Avatar>
+                        <AvatarImage src="" />
+                        <AvatarFallback className="bg-theme-purple/20 text-theme-purple-dark">
+                          {user.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <p className="font-medium">{user.name}</p>
+                        <p className="text-xs text-muted-foreground">{user.pronouns}</p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleAddSupporter(user)}
+                        className="text-theme-purple hover:bg-theme-purple/10"
+                      >
+                        Add
+                      </Button>
+                    </div>
+                  ))}
+                  {potentialSupporters.length === 0 && (
+                    <p className="text-sm text-muted-foreground text-center py-2">
+                      No more users available to add
+                    </p>
+                  )}
                 </div>
               </div>
-            ))}
+            )}
+          </div>
+          
+          <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
+            <h3 className="text-lg font-medium mb-2">Interface Settings</h3>
+            <p className="text-sm text-muted-foreground">
+              Settings for UI preferences coming soon...
+            </p>
           </div>
         </div>
-        
-        <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
-          <h3 className="text-lg font-medium mb-2">Interface Settings</h3>
-          <p className="text-sm text-muted-foreground">
-            Settings for UI preferences coming soon...
-          </p>
-        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-white to-theme-purple-light/30">

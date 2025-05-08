@@ -131,7 +131,7 @@ const AppSidebar = ({
             <Button
               variant="ghost"
               className={cn(
-                "w-full justify-start gap-3 text-left font-normal text-red-500 hover:text-red-600 hover:bg-red-50",
+                "w-full justify-start gap-3 text-left font-normal text-theme-purple hover:text-theme-purple-dark hover:bg-theme-purple/10",
                 !isOpen && "justify-center p-2"
               )}
               onClick={handleLogout}
