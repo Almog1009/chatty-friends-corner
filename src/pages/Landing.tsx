@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { userService } from "@/services/userService";
 import logo from "../assets/logo.png";
 
 interface User {
@@ -86,17 +87,21 @@ const Landing = () => {
       return;
     }
 
-    // Create new user
-    const newUser = {
+    // Create new user in userService
+    const newAppUser = userService.createUser(formData.name, formData.pronouns);
+
+    // Create auth user for local storage
+    const newAuthUser = {
       name: formData.name,
       email: formData.email,
       password: formData.password,
       pronouns: formData.pronouns,
+      appUserId: newAppUser.id // Store the app user ID for reference
     };
 
     // Save user to local storage
-    localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
+    localStorage.setItem("users", JSON.stringify([...existingUsers, newAuthUser]));
+    localStorage.setItem("currentUser", JSON.stringify(newAuthUser));
 
     toast({
       title: "Success!",

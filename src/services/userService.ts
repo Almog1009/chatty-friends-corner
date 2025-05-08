@@ -38,16 +38,15 @@ class UserService {
     const user = this.getUserById(userId);
     if (!user) return [];
     return user.mySupporters
-      .map((supporterId) => this.getUserById(supporterId
-      ))
+      .map((supporterId) => this.getUserById(supporterId))
       .filter((user): user is User => user !== undefined);
   }
 
   getSupporting(userId: string): User[] {
     const user = this.getUserById(userId);
     if (!user) return [];
-    return user.supporting
-      .map((supportingId) => this.getUserById(supportingId))
+    return (user as any).supporties
+      .map((supportingId: string) => this.getUserById(supportingId))
       .filter((user): user is User => user !== undefined);
   }
 
@@ -55,6 +54,26 @@ class UserService {
     const user = this.getUserById(userId);
     if (!user) return [];
     return user.mindTributes || [];
+  }
+
+  createUser(name: string, pronouns: string): User {
+    // Generate a new ID (simple increment from the last user's ID)
+    const lastUser = this.users[this.users.length - 1];
+    const newId = (parseInt(lastUser.id) + 1).toString();
+
+    const newUser: User = {
+      id: newId,
+      name,
+      pronouns,
+      mySupporters: [],
+      supporting: [],
+      mindTributes: null
+    };
+
+    // Add the new user to the users array
+    this.users.push(newUser);
+
+    return newUser;
   }
 }
 

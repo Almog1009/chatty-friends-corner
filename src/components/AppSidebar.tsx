@@ -20,7 +20,7 @@ const AppSidebar = ({
     <aside
       className={cn(
         "fixed left-0 top-0 z-40 h-screen transition-all duration-300 ease-in-out bg-theme-purple/10 border-r border-theme-purple/20",
-        isOpen ? "w-64" : "w-16"
+        isOpen ? "w-64" : "w-0"
       )}
     >
       <div className="h-full flex flex-col overflow-hidden">
@@ -31,7 +31,7 @@ const AppSidebar = ({
               !isOpen && "hidden"
             )}
           >
-            Mind Mates
+            Chatty Friends Corner
           </h2>
           <Button
             variant="ghost"
@@ -57,7 +57,8 @@ const AppSidebar = ({
                 !isOpen && "rotate-180"
               )}
             >
-              <path d="M15 18l-6-6 6-6" />
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
             </svg>
           </Button>
         </div>
@@ -85,15 +86,15 @@ const AppSidebar = ({
                 variant="ghost"
                 className={cn(
                   "w-full justify-start gap-3 text-left font-normal",
-                  activeSection === "friends"
+                  activeSection === "supporting"
                     ? "bg-theme-purple/20 text-theme-purple-dark"
                     : "hover:bg-theme-purple/10",
                   !isOpen && "justify-center p-2"
                 )}
-                onClick={() => onSectionChange("friends")}
+                onClick={() => onSectionChange("supporting")}
               >
                 <Users size={18} />
-                {isOpen && <span>Friends</span>}
+                {isOpen && <span>Supporting</span>}
               </Button>
             </li>
             <li>
@@ -119,7 +120,7 @@ const AppSidebar = ({
           <p
             className={cn("text-xs text-muted-foreground", !isOpen && "hidden")}
           >
-            Mind Mates v1.0
+            Chatty Friends Corner v1.0
           </p>
         </div>
       </div>
