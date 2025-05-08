@@ -18,7 +18,9 @@ const Index = () => {
   useEffect(() => {
     // Set initial sidebar state based on screen size
     const handleResize = () => {
-      setSidebarOpen(window.innerWidth >= 768);
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(true);
+      }
     };
 
     // Set initial state
@@ -58,7 +60,7 @@ const Index = () => {
   };
 
   const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
+    setSidebarOpen(prev => !prev);
   };
 
   const handleSectionChange = (section: string) => {
@@ -127,7 +129,7 @@ const Index = () => {
                     variant="ghost"
                     size="sm"
                     onClick={() => handleRemoveSupporter(supporter)}
-                    className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                    className="text-theme-purple hover:text-theme-purple-dark hover:bg-theme-purple/10"
                   >
                     Remove
                   </Button>
@@ -199,7 +201,7 @@ const Index = () => {
       {sidebarOpen && window.innerWidth < 768 && (
         <div
           className="fixed inset-0 bg-black/20 z-30 md:hidden"
-          onClick={() => setSidebarOpen(false)}
+          onClick={toggleSidebar}
         ></div>
       )}
 
