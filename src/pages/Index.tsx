@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import AppSidebar from '@/components/AppSidebar';
 import ChatView from '@/components/ChatView';
@@ -6,8 +6,24 @@ import FriendsView from '@/components/FriendsView';
 import { cn } from '@/lib/utils';
 
 const Index = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState('chat');
+
+  useEffect(() => {
+    // Set initial sidebar state based on screen size
+    const handleResize = () => {
+      setSidebarOpen(window.innerWidth >= 768);
+    };
+
+    // Set initial state
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
