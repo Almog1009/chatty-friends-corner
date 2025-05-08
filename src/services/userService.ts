@@ -1,9 +1,9 @@
-import userData from '@/data/users.json';
+import userData from "@/data/users.json";
 
 export interface User {
   id: string;
   name: string;
-  gender: string;
+  pronouns: string;
   score: number;
   summary: string;
   friends: string[];
@@ -17,25 +17,25 @@ class UserService {
   }
 
   getUserById(id: string): User | undefined {
-    return this.users.find(user => user.id === id);
+    return this.users.find((user) => user.id === id);
   }
 
   getFriends(userId: string): User[] {
     const user = this.getUserById(userId);
     if (!user) return [];
-    
+
     return user.friends
-      .map(friendId => this.getUserById(friendId))
+      .map((friendId) => this.getUserById(friendId))
       .filter((user): user is User => user !== undefined);
   }
 
   addFriend(userId: string, friendId: string): boolean {
     const user = this.getUserById(userId);
     const friend = this.getUserById(friendId);
-    
+
     if (!user || !friend) return false;
     if (user.friends.includes(friendId)) return false;
-    
+
     user.friends.push(friendId);
     friend.friends.push(userId);
     return true;
@@ -44,18 +44,18 @@ class UserService {
   removeFriend(userId: string, friendId: string): boolean {
     const user = this.getUserById(userId);
     const friend = this.getUserById(friendId);
-    
+
     if (!user || !friend) return false;
-    
-    user.friends = user.friends.filter(id => id !== friendId);
-    friend.friends = friend.friends.filter(id => id !== userId);
+
+    user.friends = user.friends.filter((id) => id !== friendId);
+    friend.friends = friend.friends.filter((id) => id !== userId);
     return true;
   }
 
   updateUserScore(userId: string, newScore: number): boolean {
     const user = this.getUserById(userId);
     if (!user) return false;
-    
+
     user.score = newScore;
     return true;
   }
@@ -63,10 +63,10 @@ class UserService {
   updateUserSummary(userId: string, newSummary: string): boolean {
     const user = this.getUserById(userId);
     if (!user) return false;
-    
+
     user.summary = newSummary;
     return true;
   }
 }
 
-export const userService = new UserService(); 
+export const userService = new UserService();
