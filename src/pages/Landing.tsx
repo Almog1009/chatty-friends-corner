@@ -24,7 +24,7 @@ interface User {
 const Landing = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
