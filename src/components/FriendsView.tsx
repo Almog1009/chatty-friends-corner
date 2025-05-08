@@ -9,21 +9,27 @@ interface FriendsViewProps {
 }
 
 const getScoreColor = (type: MindTributeType, score: number): string => {
-  // Define max scores for each type
-  const maxScores: Record<MindTributeType, number> = {
-    [MindTributeType.sadness]: 5,
-    [MindTributeType.loneliness]: 6,
-    [MindTributeType.anxiety]: 5,
-    [MindTributeType.fear]: 7,
-    [MindTributeType.anger]: 7
+  // Define base colors for each type
+  const baseColors: Record<MindTributeType, string> = {
+    [MindTributeType.anxiety]: "#FFA500", // Orange
+    [MindTributeType.sadness]: "#4169E1", // Blue
+    [MindTributeType.loneliness]: "#FFD700", // Yellow
+    [MindTributeType.fear]: "#800080", // Purple
+    [MindTributeType.anger]: "#FF0000" // Red
   };
 
-  const maxScore = maxScores[type];
-  // Convert score to a percentage of the max score
-  const percentage = Math.min(score / maxScore, 1);
-  // Convert percentage to hue (0 = red, 120 = green)
-  const hue = ((1 - percentage) * 120).toString();
-  return `hsl(${hue}, 70%, 50%)`;
+  const baseColor = baseColors[type];
+  // Convert score to a percentage (assuming max score is 5)
+  const percentage = Math.min(score / 5, 1);
+  // Adjust opacity based on score (higher score = more opaque)
+  const opacity = 0.3 + (percentage * 0.7); // Range from 0.3 to 1.0
+  
+  // Convert hex to rgba
+  const r = parseInt(baseColor.slice(1, 3), 16);
+  const g = parseInt(baseColor.slice(3, 5), 16);
+  const b = parseInt(baseColor.slice(5, 7), 16);
+  
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
 
 const FriendsView = ({ onReturn }: FriendsViewProps) => {
@@ -61,9 +67,13 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
       <div className="flex-1 overflow-y-auto">
         <div className="space-y-4">
           {supporting.map((user) => {
-            const latestTribute = user.mindTributes?.[0];
-            const avatarColor = latestTribute 
-              ? getScoreColor(latestTribute.type, latestTribute.score)
+            // Find the mindTribute with the highest score
+            const highestTribute = user.mindTributes?.reduce((highest, current) => 
+              (current.score > highest.score) ? current : highest
+            , user.mindTributes[0]);
+            
+            const avatarColor = highestTribute 
+              ? getScoreColor(highestTribute.type, highestTribute.score)
               : "#6B7280";
 
             return (
@@ -93,13 +103,13 @@ const FriendsView = ({ onReturn }: FriendsViewProps) => {
                       Message
                     </Button>
                   </div>
-                  {latestTribute && (
+                  {highestTribute && (
                     <div className="mt-2 space-y-1">
                       <p className="text-sm font-medium text-theme-purple-dark">
-                        {latestTribute.type.charAt(0).toUpperCase() + latestTribute.type.slice(1)}
+                        {highestTribute.type.charAt(0).toUpperCase() + highestTribute.type.slice(1)}
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        {latestTribute.summary}
+                        {highestTribute.summary}
                       </p>
                     </div>
                   )}

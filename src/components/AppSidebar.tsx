@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Settings, Users, MessageCircle } from "lucide-react";
+import { Settings, Users, MessageCircle, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface AppSidebarProps {
   isOpen: boolean;
@@ -16,6 +17,15 @@ const AppSidebar = ({
   activeSection,
   onSectionChange,
 }: AppSidebarProps) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem("currentUser");
+    // Navigate to landing page
+    navigate("/");
+  };
+
   return (
     <aside
       className={cn(
@@ -117,11 +127,24 @@ const AppSidebar = ({
         </nav>
 
         <div className="p-4 border-t border-theme-purple/20">
-          <p
-            className={cn("text-xs text-muted-foreground", !isOpen && "hidden")}
-          >
-            Chatty Friends Corner v1.0
-          </p>
+          <div className="flex flex-col gap-4">
+            <Button
+              variant="ghost"
+              className={cn(
+                "w-full justify-start gap-3 text-left font-normal text-red-500 hover:text-red-600 hover:bg-red-50",
+                !isOpen && "justify-center p-2"
+              )}
+              onClick={handleLogout}
+            >
+              <LogOut size={18} />
+              {isOpen && <span>Log Out</span>}
+            </Button>
+            <p
+              className={cn("text-xs text-muted-foreground", !isOpen && "hidden")}
+            >
+              Chatty Friends Corner v1.0
+            </p>
+          </div>
         </div>
       </div>
     </aside>

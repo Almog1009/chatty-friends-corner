@@ -8,7 +8,10 @@
       "supporties": ["3", "7"],
       "mindTributes": [
         {"type": "anxiety", "score": 2, "summary": "Feeling occasionally anxious about work deadlines"},
-        {"type": "sadness", "score": 3, "summary": "Processing some mild sadness about recent changes"}
+        {"type": "sadness", "score": 3, "summary": "Processing some mild sadness about recent changes"},
+        {"type": "loneliness", "score": 2, "summary": "Sometimes feeling disconnected from others"},
+        {"type": "fear", "score": 1, "summary": "Minor concerns about future uncertainties"},
+        {"type": "anger", "score": 2, "summary": "Some frustration with daily challenges"}
       ]
     },
     {
@@ -19,7 +22,10 @@
       "supporties": ["1", "8"],
       "mindTributes": [
         {"type": "anxiety", "score": 3, "summary": "Regular anxiety about upcoming presentations"},
-        {"type": "fear", "score": 5, "summary": "Dealing with fear of major life changes"}
+        {"type": "sadness", "score": 2, "summary": "Occasional sadness about missed opportunities"},
+        {"type": "loneliness", "score": 1, "summary": "Rare moments of feeling alone"},
+        {"type": "fear", "score": 5, "summary": "Dealing with fear of major life changes"},
+        {"type": "anger", "score": 2, "summary": "Some frustration with current circumstances"}
       ]
     },
     {
@@ -29,7 +35,10 @@
       "mySupporters": ["1", "9"],
       "supporties": ["5", "10"],
       "mindTributes": [
+        {"type": "anxiety", "score": 2, "summary": "Mild anxiety about social situations"},
+        {"type": "sadness", "score": 3, "summary": "Processing some emotional challenges"},
         {"type": "loneliness", "score": 4, "summary": "Experiencing loneliness after moving to a new city"},
+        {"type": "fear", "score": 2, "summary": "Some concerns about the future"},
         {"type": "anger", "score": 2, "summary": "Minor frustrations with daily commute"}
       ]
     },
@@ -40,8 +49,11 @@
       "mySupporters": ["6", "8"],
       "supporties": ["2", "9"],
       "mindTributes": [
+        {"type": "anxiety", "score": 3, "summary": "Some anxiety about daily responsibilities"},
+        {"type": "sadness", "score": 5, "summary": "Processing grief from recent loss"},
+        {"type": "loneliness", "score": 2, "summary": "Occasional feelings of isolation"},
         {"type": "fear", "score": 4, "summary": "Concerned about future career prospects"},
-        {"type": "sadness", "score": 5, "summary": "Processing grief from recent loss"}
+        {"type": "anger", "score": 1, "summary": "Rare moments of frustration"}
       ]
     },
     {
@@ -52,6 +64,9 @@
       "supporties": ["1", "7"],
       "mindTributes": [
         {"type": "anxiety", "score": 5, "summary": "High anxiety about upcoming medical procedure"},
+        {"type": "sadness", "score": 2, "summary": "Some sadness about current situation"},
+        {"type": "loneliness", "score": 1, "summary": "Rare feelings of being alone"},
+        {"type": "fear", "score": 3, "summary": "Concerns about health outcomes"},
         {"type": "anger", "score": 3, "summary": "Frustration with work-related challenges"}
       ]
     },
@@ -62,8 +77,11 @@
       "mySupporters": ["2", "7"],
       "supporties": ["4", "8"],
       "mindTributes": [
+        {"type": "anxiety", "score": 2, "summary": "Mild anxiety about social interactions"},
+        {"type": "sadness", "score": 3, "summary": "Some sadness about current circumstances"},
         {"type": "loneliness", "score": 4, "summary": "Feeling isolated in current living situation"},
-        {"type": "fear", "score": 3, "summary": "Mild concerns about financial stability"}
+        {"type": "fear", "score": 3, "summary": "Mild concerns about financial stability"},
+        {"type": "anger", "score": 2, "summary": "Occasional frustration with daily life"}
       ]
     },
     {
@@ -73,8 +91,11 @@
       "mySupporters": ["1", "5"],
       "supporties": ["6", "10"],
       "mindTributes": [
-        {"type": "anger", "score": 4, "summary": "Frustrated with recent workplace changes"},
-        {"type": "anxiety", "score": 2, "summary": "Light anxiety about social gatherings"}
+        {"type": "anxiety", "score": 2, "summary": "Light anxiety about social gatherings"},
+        {"type": "sadness", "score": 1, "summary": "Rare moments of sadness"},
+        {"type": "loneliness", "score": 2, "summary": "Sometimes feeling disconnected"},
+        {"type": "fear", "score": 1, "summary": "Minor concerns about the future"},
+        {"type": "anger", "score": 4, "summary": "Frustrated with recent workplace changes"}
       ]
     },
     {
@@ -84,8 +105,11 @@
       "mySupporters": ["2", "6"],
       "supporties": ["4", "9"],
       "mindTributes": [
+        {"type": "anxiety", "score": 3, "summary": "Some anxiety about family situation"},
         {"type": "sadness", "score": 5, "summary": "Deep sadness about family situation"},
-        {"type": "loneliness", "score": 1, "summary": "Occasional feelings of disconnection"}
+        {"type": "loneliness", "score": 1, "summary": "Occasional feelings of disconnection"},
+        {"type": "fear", "score": 2, "summary": "Concerns about family dynamics"},
+        {"type": "anger", "score": 1, "summary": "Rare moments of frustration"}
       ]
     },
     {
@@ -95,6 +119,9 @@
       "mySupporters": ["3", "4"],
       "supporties": ["10"],
       "mindTributes": [
+        {"type": "anxiety", "score": 3, "summary": "Some anxiety about upcoming changes"},
+        {"type": "sadness", "score": 2, "summary": "Processing some emotional challenges"},
+        {"type": "loneliness", "score": 1, "summary": "Rare feelings of isolation"},
         {"type": "fear", "score": 4, "summary": "Fear of upcoming life changes"},
         {"type": "anger", "score": 3, "summary": "Frustration with housing situation"}
       ]
@@ -106,8 +133,11 @@
       "mySupporters": ["3", "7"],
       "supporties": ["5", "9"],
       "mindTributes": [
+        {"type": "anxiety", "score": 2, "summary": "Some anxiety about new environment"},
         {"type": "sadness", "score": 5, "summary": "Processing grief from recent breakup"},
-        {"type": "loneliness", "score": 2, "summary": "Occasional isolation in new environment"}
+        {"type": "loneliness", "score": 2, "summary": "Occasional isolation in new environment"},
+        {"type": "fear", "score": 3, "summary": "Concerns about future relationships"},
+        {"type": "anger", "score": 1, "summary": "Rare moments of frustration"}
       ]
     }
   ]
