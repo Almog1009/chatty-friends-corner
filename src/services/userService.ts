@@ -79,6 +79,21 @@ class UserService {
 
     return newUser;
   }
+
+  updateUserMindTributes(userId: string, mindTributes: MindTribute[]): void {
+    const user = this.getUserById(userId);
+    if (!user) {
+      console.log(`Failed to update mind tributes - user ${userId} not found`);
+      return;
+    }
+    user.mindTributes = mindTributes;
+
+    // update the localStorage
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const userIndex = users.findIndex((user: User) => user.id === userId);
+    users[userIndex] = user;
+    localStorage.setItem("users", JSON.stringify(users));
+  }
 }
 
 export const userService = new UserService();
