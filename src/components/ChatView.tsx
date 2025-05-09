@@ -145,6 +145,21 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
 
   return (
     <div className="flex flex-col h-full">
+      {onReturn && (
+        <div className="sticky top-0 z-10 p-4 border-b border-theme-purple/20 bg-white/50">
+          <div className="max-w-md mx-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onReturn}
+              className="border-theme-purple/20 text-theme-purple hover:bg-theme-purple/10"
+            >
+              <ArrowLeft size={16} className="mr-1" />
+              Back to Chat
+            </Button>
+          </div>
+        </div>
+      )}
       <div className="flex-1 overflow-y-auto p-4">
         {messages.length === 0 ? (
           <div className="max-w-md mx-auto bg-theme-purple/5 p-6 rounded-lg shadow-sm border border-theme-purple/20 mb-6">
@@ -152,34 +167,10 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
               <p className="text-sm text-muted-foreground">
                 Share your feelings or just say hello!
               </p>
-              {onReturn && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={onReturn}
-                  className="border-theme-purple/20 text-theme-purple hover:bg-theme-purple/10"
-                >
-                  <ArrowLeft size={16} className="mr-1" />
-                  Back to Chat
-                </Button>
-              )}
             </div>
           </div>
         ) : (
           <div className="space-y-4 max-w-md mx-auto">
-            {onReturn && (
-              <div className="flex justify-end mb-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={onReturn}
-                  className="border-theme-purple/20 text-theme-purple hover:bg-theme-purple/10"
-                >
-                  <ArrowLeft size={16} className="mr-1" />
-                  Back to Chat
-                </Button>
-              </div>
-            )}
             {messages.map((msg) => (
               <div
                 key={msg.id}
