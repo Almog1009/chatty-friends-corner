@@ -40,27 +40,29 @@ const Index = () => {
 
     // Load all users and filter out current supporters
     const allUsers = userService.getAllUsers();
-    const currentSupporterIds = new Set(currentSupporters.map(s => s.id));
-    const potential = allUsers.filter(user => !currentSupporterIds.has(user.id));
+    const currentSupporterIds = new Set(currentSupporters.map((s) => s.id));
+    const potential = allUsers.filter(
+      (user) => !currentSupporterIds.has(user.id)
+    );
     setPotentialSupporters(potential);
   }, []);
 
   const handleAddSupporter = (user: User) => {
     // Add to supporters list
-    setSupporters(prev => [...prev, user]);
+    setSupporters((prev) => [...prev, user]);
     // Remove from potential supporters
-    setPotentialSupporters(prev => prev.filter(u => u.id !== user.id));
+    setPotentialSupporters((prev) => prev.filter((u) => u.id !== user.id));
   };
 
   const handleRemoveSupporter = (user: User) => {
     // Remove from supporters list
-    setSupporters(prev => prev.filter(u => u.id !== user.id));
+    setSupporters((prev) => prev.filter((u) => u.id !== user.id));
     // Add back to potential supporters
-    setPotentialSupporters(prev => [...prev, user]);
+    setPotentialSupporters((prev) => [...prev, user]);
   };
 
   const toggleSidebar = () => {
-    setSidebarOpen(prev => !prev);
+    setSidebarOpen((prev) => !prev);
   };
 
   const handleSectionChange = (section: string) => {
@@ -75,14 +77,14 @@ const Index = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [showAddSupporters, setShowAddSupporters] = useState(false);
 
-    const filteredSupporters = supporters.filter(supporter =>
+    const filteredSupporters = supporters.filter((supporter) =>
       supporter.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
       <div className="p-4 max-w-md mx-auto">
         <h2 className="text-xl font-semibold mb-4">App Settings</h2>
-        
+
         <div className="space-y-6">
           <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
             <div className="flex items-center justify-between mb-3">
@@ -123,7 +125,9 @@ const Index = () => {
                   </Avatar>
                   <div className="flex-1">
                     <p className="font-medium">{supporter.name}</p>
-                    <p className="text-xs text-muted-foreground">{supporter.pronouns}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {supporter.pronouns}
+                    </p>
                   </div>
                   <Button
                     variant="ghost"
@@ -162,7 +166,9 @@ const Index = () => {
                       </Avatar>
                       <div className="flex-1">
                         <p className="font-medium">{user.name}</p>
-                        <p className="text-xs text-muted-foreground">{user.pronouns}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {user.pronouns}
+                        </p>
                       </div>
                       <Button
                         variant="outline"
@@ -183,7 +189,7 @@ const Index = () => {
               </div>
             )}
           </div>
-          
+
           <div className="p-4 bg-white rounded-lg shadow-sm border border-theme-purple/20">
             <h3 className="text-lg font-medium mb-2">Interface Settings</h3>
             <p className="text-sm text-muted-foreground">
@@ -221,7 +227,7 @@ const Index = () => {
         )}
       >
         {/* Mobile Header */}
-        <div className="md:hidden p-4 border-b border-theme-purple/20 bg-white/60 backdrop-blur-sm">
+        <div className="md:hidden sticky top-0 z-30 p-4 border-b border-theme-purple/20 bg-white/60 backdrop-blur-sm">
           <Button
             variant="ghost"
             size="icon"

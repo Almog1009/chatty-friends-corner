@@ -1,4 +1,4 @@
-import { MindTribute } from "./userService";
+import { MindTribute, userService } from "./userService";
 import prompt from "@/lib/prompt.txt?raw";
 
 export interface Message {
@@ -71,7 +71,7 @@ export class LlmService {
     }
   }
 
-  async sendMessage(userContext: string[]): Promise<string> {
+  async sendMessage(userContext: string[], userId: string): Promise<string> {
     const messages: Message[] = [
       {
         role: "user",
@@ -86,9 +86,12 @@ export class LlmService {
       max_tokens: 500,
     });
 
-    console.log(response);
-
     const llmResponse = await this.parseLlmResponse(response);
+
+    console.log(llmResponse);
+
+    userService.updateUserMindTributes(userId, llmResponse.mindTributes);
+
     return llmResponse.chatResponse;
   }
 
