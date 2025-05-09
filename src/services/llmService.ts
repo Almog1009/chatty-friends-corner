@@ -19,29 +19,15 @@ export interface LlmResponse {
 }
 
 export class LlmService {
-  private apiKey: string | null = null;
+  private apiKey: string = process.env.VITE_API_KEY || "";
   private apiUrl: string =
     "https://mindmates-openai.openai.azure.com/openai/deployments";
   private apiVersion: string = "api-version=2025-01-01-preview";
   private model: string = "gpt-4o-mini";
 
-  setApiKey(key: string) {
-    this.apiKey = key;
-    // Save to localStorage for persistence
-    localStorage.setItem("llm-api-key", key);
-    return true;
-  }
-
-  getApiKey() {
-    if (!this.apiKey) {
-      this.apiKey = localStorage.getItem("llm-api-key");
-    }
-    return this.apiKey;
-  }
-
   async sendRequest(body: object): Promise<any> {
     if (!this.apiKey) {
-      throw new Error("API key is not set");
+      throw new Error("API key is not set in environment variables");
     }
 
     try {

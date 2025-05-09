@@ -14,25 +14,13 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  console.log("apikey", process.env.VITE_API_KEY);
-
-  const [apiKey, setApiKey] = useState(process.env.VITE_API_KEY || "");
-  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [userName, setUserName] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Check for existing API key and userId on component mount
+  // Check for existing userId on component mount
   useEffect(() => {
-    const savedApiKey = process.env.VITE_API_KEY || llmService.getApiKey();
-    if (savedApiKey) {
-      setApiKey(savedApiKey);
-      setShowApiKeyInput(false);
-    } else {
-      setShowApiKeyInput(true);
-    }
-
     // Get userId and userName from localStorage
     const currentUser = localStorage.getItem("currentUser");
     if (currentUser) {
@@ -79,16 +67,6 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
     // Clear input field
     setMessage("");
 
-    // If API key is not set, show a toast
-    if (!apiKey) {
-      toast({
-        title: "API Key Required",
-        description: "Please enter your OpenAI API Key in the settings",
-      });
-      setShowApiKeyInput(true);
-      return;
-    }
-
     // Set loading state
     setIsLoading(true);
 
@@ -126,23 +104,6 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
       });
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleSaveApiKey = () => {
-    if (apiKey.trim()) {
-      llmService.setApiKey(apiKey.trim());
-      setShowApiKeyInput(false);
-      toast({
-        title: "API Key Saved",
-        description: "Your API key has been saved.",
-      });
-    } else {
-      toast({
-        title: "Invalid API Key",
-        description: "Please enter a valid API key.",
-        variant: "destructive",
-      });
     }
   };
 
@@ -205,34 +166,6 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
           </div>
         )}
       </div>
-
-      {showApiKeyInput && (
-        <div className="p-4 border-t border-theme-purple/20 bg-white/50 mb-2">
-          <div className="max-w-md mx-auto">
-            <h3 className="text-sm font-medium mb-2">
-              Enter your OpenAI API Key:
-            </h3>
-            <div className="flex gap-2">
-              <Input
-                type="password"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="sk-..."
-                className="flex-1 focus-visible:ring-theme-purple"
-              />
-              <Button
-                onClick={handleSaveApiKey}
-                className="bg-theme-purple hover:bg-theme-purple-dark"
-              >
-                Save
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Your API key is stored locally in your browser.
-            </p>
-          </div>
-        </div>
-      )}
 
       <div className="p-4 border-t border-theme-purple/20">
         <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto">
