@@ -14,6 +14,8 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  console.log("apikey", process.env.VITE_API_KEY);
+
   const [apiKey, setApiKey] = useState(process.env.VITE_API_KEY || "");
   const [showApiKeyInput, setShowApiKeyInput] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -26,6 +28,7 @@ const ChatView = ({ onReturn }: ChatViewProps) => {
     const savedApiKey = process.env.VITE_API_KEY || llmService.getApiKey();
     if (savedApiKey) {
       setApiKey(savedApiKey);
+      setShowApiKeyInput(false);
     } else {
       setShowApiKeyInput(true);
     }
