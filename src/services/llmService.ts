@@ -109,6 +109,7 @@ export class LlmService {
         );
         return llmResponse;
       } catch (error) {
+        console.log("error");
         throw error;
       }
     }
